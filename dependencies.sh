@@ -23,15 +23,6 @@ echo "===== Installing Minikube ====="
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
-echo "===== Starting Minikube Cluster ====="
-minikube start --driver=docker
-
-echo "===== Enabling Nginx Ingress ====="
-minikube addons enable ingress
-
-echo "===== Installation Complete ====="
-echo "Please logout and login again for Docker group changes."
-echo "Check versions:"
-echo "docker --version"
-echo "kubectl version --client"
-echo "minikube version"
+echo "===== Restarting System in 10 Seconds ====="
+sleep 10
+sudo reboot
