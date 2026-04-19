@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 set -e
 
@@ -22,6 +22,12 @@ sudo mv kubectl /usr/local/bin/
 echo "===== Installing Minikube ====="
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+echo "===== Starting Minikube ====="
+minikube start --driver=docker --memory=1900 --cpus=2
+
+echo "===== Enabling Nginx Ingress ====="
+minikube addons enable ingress
 
 echo "===== Restarting System in 10 Seconds ====="
 sleep 10
