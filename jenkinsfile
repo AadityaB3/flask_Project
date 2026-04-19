@@ -1,0 +1,17 @@
+pipeline {
+  agent any
+  stages {
+    stage('Checkout') { steps { git 'YOUR_REPO_URL' } }
+    stage('Build Image') { steps { sh 'docker build -t flask-app:v1 .' } }
+    stage('Deploy') {
+      steps {
+        sh 'kubectl apply -f configmap.yaml'
+        sh 'kubectl apply -f secret.yaml'
+        sh 'kubectl apply -f db-deployment.yaml'
+        sh 'kubectl apply -f db-service.yaml'
+        sh 'kubectl apply -f deployment.yaml'
+        sh 'kubectl apply -f service.yaml'
+      }
+    }
+  }
+}
